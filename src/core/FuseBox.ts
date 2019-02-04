@@ -17,7 +17,7 @@ import { Bundle } from "./Bundle";
 import { File } from "./File";
 import { ExtensionOverrides } from "./ExtensionOverrides";
 import { TypescriptConfig } from "./TypescriptConfig";
-import { CombinedTargetAndLanguageLevel } from './CombinedTargetAndLanguageLevel';
+import { CombinedTargetAndLanguageLevel } from "./CombinedTargetAndLanguageLevel";
 
 const appRoot = require("app-root-path");
 
@@ -385,9 +385,8 @@ export class FuseBox {
 
 		const self = this;
 		return bundleCollection.collectBundle(bundleData).then(module => {
-			if (this.context.emitHMRDependencies) {
-				this.context.emitter.emit("bundle-collected");
-			}
+			this.context.emitter.emit("bundle-collected");
+
 			this.context.log.bundleStart(this.context.bundle.name);
 			return chain(
 				class extends Chainable {
